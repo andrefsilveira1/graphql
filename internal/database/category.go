@@ -27,3 +27,23 @@ func (c *Category) CreateCategory(name string) (Category, error) {
 
 	return Category{ID: id, Name: name}, nil
 }
+
+func (c *Category) ListCategories() ([]Category, error) {
+	rows, err := c.db.Query("SELECT id, name FROM categories")
+	if err != nil {
+		return nil, err
+	}
+
+	defer rows.Close()
+
+	categories := []Category{}
+	for rows.Next() {
+		var id, name string
+		if err := rows.Scan(&id, &name); err != nil {
+			return nil, err
+		}
+		categories = append(categories, Category{ID: id, Name: name})
+	}
+
+	return categories, nil
+}
