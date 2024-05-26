@@ -2,20 +2,6 @@
 
 package model
 
-type Category struct {
-	ID      string    `json:"id"`
-	Name    string    `json:"name"`
-	Courses []*Course `json:"courses"`
-}
-
-type Course struct {
-	ID          string    `json:"id"`
-	Name        string    `json:"name"`
-	Description *string   `json:"description,omitempty"`
-	Category    *Category `json:"category"`
-	Created     *string   `json:"created,omitempty"`
-}
-
 type Mutation struct {
 }
 
