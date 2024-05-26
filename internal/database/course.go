@@ -42,7 +42,7 @@ func (c *Course) ListCourses() ([]Course, error) {
 	courses := []Course{}
 	for rows.Next() {
 		var id, name, description, category_id string
-		if err := rows.Scan(&id, &name, &category_id); err != nil {
+		if err := rows.Scan(&id, &name, &description, &category_id); err != nil {
 			return nil, err
 		}
 		courses = append(courses, Course{ID: id, Name: name, Description: description, CategoryID: category_id})
